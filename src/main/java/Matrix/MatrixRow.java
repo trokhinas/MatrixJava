@@ -20,7 +20,8 @@ public class MatrixRow extends SimpleMatrixRow implements Cloneable{
 
     public void set(double elem, int i) {
         if(i < 0 || i >= size)
-            return;
+            throw new IndexOutOfBoundsException
+                    ("Нельзя поместить элемент в строку: индекс " + i + " не попадает в диапазон " + "[" + 0 + ";" + (size - 1) + "]");
 
         elements[i] = elem;
     }

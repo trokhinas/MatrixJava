@@ -125,15 +125,17 @@ public class Matrix {
 
         Matrix result = new Matrix(this.rowsNum, matrix.colsNum);
         for (int i = 0; i < result.rowsNum; i ++) {
+            var row = this.getRow(i);
             for (int j = 0; j < result.colsNum; j ++) {
-                var x = mul(this.getRow(i), matrix.getCol(j));
-                result.rows.get(i).set(x, j);
+                var col = matrix.getCol(j);
+                var value = mulRowOnCol(row, col);
+                result.rows.get(i).set(value, j);
             }
         }
         return result;
     }
     //умножение двух векторов (строки на столбец)
-    private double mul(double[] row, double[] col) {
+    private double mulRowOnCol(double[] row, double[] col) {
         double result = 0;
         for(int i = 0 ; i < row.length ; i ++) {
             result += row[i] * col[i];
